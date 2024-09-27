@@ -21,6 +21,7 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 ## 1.2.3 Delete product()  
 ![DeleteProduct](https://github.com/user-attachments/assets/3a92e2bc-e326-472e-acac-714f1683eecf)  
 ## Giao diện đầu tiên của dự án  
+![LoginFrame](https://github.com/user-attachments/assets/224b451a-ec81-48f9-b2c0-1d16c74af026)
 
 ## GitHub Pages Dự Án
 https://github.com/hiepdaoquang704/OOP
