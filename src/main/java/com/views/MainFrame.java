@@ -32,32 +32,28 @@ public class MainFrame extends JFrame {
         manageStockButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // // Mở cửa sổ quản lý kho
-                // new StockFrame().setVisible(true);
+
             }
         });
 
         manageOrdersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // // Mở cửa sổ quản lý đơn hàng
-                // new OrdersFrame().setVisible(true);
+
             }
         });
 
         manageCustomersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // // Mở cửa sổ quản lý khách hàng
-                // new CustomersFrame().setVisible(true);
+
             }
         });
 
         paymentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // // Mở cửa sổ thanh toán
-                // new PaymentFrame().setVisible(true);
+
             }
         });
     }
