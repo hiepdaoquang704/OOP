@@ -1,5 +1,3 @@
-package src.main.java.com.models;
-
 public class Customers {
     private int customerID;
     private String nameCustomer;
@@ -15,17 +13,43 @@ public class Customers {
         this.email = email;
     }
 
-    public void getPhone() {
-        // logic getPhone
+    public int getCustomerID() {
+        return customerID;
     }
 
-    public void getAddress() {
-        // logic Address
+    public String getPhone() {
+        return phone;
     }
 
-    public void updateCustomers() {
-        // logic updateCustomers
+    public String getAddress() {
+        return address;
     }
 
-    // Getters và Setters
+    public String getNameCustomer() {
+        return nameCustomer;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setNameCustomer(String nameCustomer) {
+        this.nameCustomer = nameCustomer;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
