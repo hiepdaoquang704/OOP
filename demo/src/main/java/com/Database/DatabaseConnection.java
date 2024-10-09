@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://mysql-277c0df0-hiepdaoquang704-cd96.i.aivencloud.com:20875";
-    private static final String USER = "defaultdb";
-    private static final String PASSWORD = "AVNS_IuP2XVXWP8qDaS5Nqq4";
+    private static final Dotenv dotenv = Dotenv.load();
+
+    private static final String URL = dotenv.get("DB_URL");
+    private static final String USER = dotenv.get("DB_USER");
+    private static final String PASSWORD = dotenv.get("DB_PASSWORD");
 
     public static Connection Aivenconnect() {
         Connection conn = null;
