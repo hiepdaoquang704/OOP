@@ -37,6 +37,12 @@
         <artifactId>jasypt</artifactId>
         <version>1.9.3</version>
     </dependency>
+    <!-- read .env -->
+    <dependency>
+        <groupId>io.github.cdimascio</groupId>
+        <artifactId>java-dotenv</artifactId>
+        <version>5.2.2</version>
+    </dependency>
 
   </dependencies>
 
