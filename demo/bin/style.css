@@ -1,0 +1,10 @@
+.root {
+    -fx-font-family: "Arial";
+    -fx-padding: 10;
+}
+
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
