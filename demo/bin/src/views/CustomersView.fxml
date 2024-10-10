@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.CustomersController">
+    <TableView fx:id="customersTable" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="500.0">
+        <columns>
+            <TableColumn fx:id="columnCustomerId" text="Customer ID" />
+            <TableColumn fx:id="columnName" text="Name" />
+            <TableColumn fx:id="columnAddress" text="Address" />
+            <TableColumn fx:id="columnPhone" text="Phone" />
+            <TableColumn fx:id="columnEmail" text="Email" />
+        </columns>
+    </TableView>
+
+    <TextField fx:id="nameField" layoutX="14.0" layoutY="220.0" promptText="Name" />
+    <TextField fx:id="addressField" layoutX="14.0" layoutY="260.0" promptText="Address" />
+    <TextField fx:id="phoneField" layoutX="14.0" layoutY="300.0" promptText="Phone" />
+    <TextField fx:id="emailField" layoutX="14.0" layoutY="340.0" promptText="Email" />
+    <Button layoutX="250.0" layoutY="220.0" mnemonicParsing="false" text="Add Customer" onAction="#addCustomer"/>
+</AnchorPane>
