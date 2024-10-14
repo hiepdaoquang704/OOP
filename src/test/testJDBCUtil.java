@@ -12,7 +12,7 @@ public class testJDBCUtil {
 			
 			
 			String sql = "INSERT INTO Customers (CustomerID, NameCustomer, Address, Phone, Email) "
-			           + "VALUES (5, 'Tran AD', '18', '12', '123Ha@gmail.com')";
+			           + "VALUES (6, 'Tran ADdas', '18', '12', '123Ha@gmail.com')";
 
 			int check = st.executeUpdate(sql);
 			
