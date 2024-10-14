@@ -39,5 +39,10 @@ public class Stock {
 	public void setPrice(float price) {
 		Price = price;
 	}
+	@Override
+	public String toString() {
+		return "Stock [ProductID=" + ProductID + ", NameProduct=" + NameProduct + ", Quantity=" + Quantity + ", Price="
+				+ Price + "]";
+	}
 	
 }

@@ -1,6 +1,7 @@
 package dao;
 import java.sql.Connection;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -41,32 +42,145 @@ public class StockDAO implements DAOinterface<Stock>{
 
 	@Override
 	public int Update(Stock t) {
-		// TODO Auto-generated method stub
-		return 0;
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+	        
+	        String sql = "UPDATE Stock SET NameProduct = ?, Quantity = ?, Price = ? WHERE ProductID = ?";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setString(1, t.getNameProduct());
+	        ps.setInt(2, t.getQuantity());
+	        ps.setDouble(3, t.getPrice());
+	        ps.setInt(4, t.getProductID());
+	        
+	        System.out.println("SQL to execute: " + ps.toString());
+	        
+	        int result = ps.executeUpdate();
+	        System.out.println(result + " row(s) updated.");
+	        
+	        JDBCUtil.closeConnection(con);
+	        return result; // Return the number of rows affected
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return 0;
 	}
+
 
 	@Override
 	public int Delete(Stock t) {
-		// TODO Auto-generated method stub
-		return 0;
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+
+	        String sql = "DELETE FROM Stock WHERE ProductID = ?";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setInt(1, t.getProductID());
+
+	        System.out.println("SQL to execute: " + ps.toString());
+
+	        int result = ps.executeUpdate();
+	        System.out.println(result + " row(s) deleted.");
+
+	        JDBCUtil.closeConnection(con);
+	        return result; // Return the number of rows affected
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return 0;
 	}
+
 
 	@Override
 	public ArrayList<Stock> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+	    ArrayList<Stock> result = new ArrayList<Stock>();
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+	        Statement st = con.createStatement();
+	        String sql = "SELECT * FROM Stock";
+	        System.out.println("SQL to execute: " + sql);
+
+	        ResultSet rs = st.executeQuery(sql);
+
+	        while (rs.next()) {
+	            int Id = rs.getInt("ProductID");
+	            String name = rs.getString("NameProduct");
+	            int quantity = rs.getInt("Quantity");
+	            float price = rs.getFloat("Price");
+
+	            // Create a new Stock object and add it to the result list
+	            Stock stock = new Stock(Id, name, quantity, price);
+	            result.add(stock);
+	        }
+
+	        JDBCUtil.closeConnection(con);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return result; // Return the list of Stock objects
 	}
+
 
 	@Override
 	public Stock selectById(Stock t) {
-		// TODO Auto-generated method stub
-		return null;
+	    Stock stock = null;
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+	        String sql = "SELECT * FROM Stock WHERE ProductID = ?";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setInt(1, t.getProductID());
+
+	        System.out.println("SQL to execute: " + ps.toString());
+
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            int productId = rs.getInt("ProductID");
+	            String nameProduct = rs.getString("NameProduct");
+	            int quantity = rs.getInt("Quantity");
+	            float price = rs.getFloat("Price");
+
+	            // Create a Stock object with the retrieved data
+	            stock = new Stock(productId, nameProduct, quantity, price);
+	        }
+
+	        JDBCUtil.closeConnection(con);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return stock;
 	}
+
 
 	@Override
 	public ArrayList<Stock> selectByCondition(String condition) {
-		// TODO Auto-generated method stub
-		return null;
+	    ArrayList<Stock> result = new ArrayList<Stock>();
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+	        String sql = "SELECT * FROM Stock WHERE " + condition;
+	        Statement st = con.createStatement();
+
+	        System.out.println("SQL to execute: " + sql);
+
+	        ResultSet rs = st.executeQuery(sql);
+
+	        while (rs.next()) {
+	            int productId = rs.getInt("ProductID");
+	            String nameProduct = rs.getString("NameProduct");
+	            int quantity = rs.getInt("Quantity");
+	            float price = rs.getFloat("Price");
+
+	            // Create a Stock object and add it to the result list
+	            Stock stock = new Stock(productId, nameProduct, quantity, price);
+	            result.add(stock);
+	        }
+
+	        JDBCUtil.closeConnection(con);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return result;
 	}
+
 	
 }
