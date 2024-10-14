@@ -8,37 +8,33 @@ import java.util.ArrayList;
 import database.JDBCUtil;
 import models.Stock;
 
-public class StockDAO implements DAOinterface<Stock> {
-	
+public class StockDAO implements DAOinterface<Stock>{
 	public static StockDAO getInstance() {
 		return new StockDAO();
-		
 	}
-	
 	
 	@Override
 	public int Insert(Stock t) {
 		// TODO Auto-generated method stub
 		try {
 			Connection con=JDBCUtil.getConnection();
-			Statement st= con.createStatement();
 			
-			String sql="INSERT INTO Stock(ProductID,NameProduct,Quantity,Price)"+
-						" VALUES ('"+t.getProductID()+ "','"+t.getNameProduct()+"' , '"+t.getQuantity()+"' , '"+t.getPrice()+"')";
+			Statement st=con.createStatement();
+			String sql ="INSERT INTO Stock (ProductID,NameProduct,Quantity,Price)"+
+			"VALUES ("+t.getProductID()+" ,'"+t.getNameProduct()+"' , '"+t.getQuantity()+"',"+t.getPrice()+")";
 			
-
-			int result =st.executeUpdate(sql);
+			System.out.println("Sql excute: "+sql);
 			
-			System.out.println("Sql completed"+sql);
-			System.out.println("Have "+ result+"Changed");
+			int result=st.executeUpdate(sql);
+			System.out.println(result+"line changed");
 			
 			JDBCUtil.closeConnection(con);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Cannot conect to database");
 		}
+		
 		
 		return 0;
 	}
@@ -73,6 +69,4 @@ public class StockDAO implements DAOinterface<Stock> {
 		return null;
 	}
 	
-	
-
 }
