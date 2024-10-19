@@ -3,6 +3,7 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
+import java.sql.SQLException;
 
 import javax.swing.Action;
 import javax.swing.JOptionPane;
@@ -19,36 +20,50 @@ public StockManaController(Manager view) {
 	}
 
 	//	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    String cm = e.getActionCommand();
-//	    JOptionPane.showMessageDialog(view, cm);
-	    if (cm.equals("Add")) {
-	        this.view.RemoveForm();
-	        this.view.model.setSelect("Add");
-	    } else if (cm.equals("Save")) {
-	        try {
-	            // get data
-	            int ProductID = Integer.valueOf(this.view.txtProductID.getText());
-	            String NameProduct = this.view.txtProductName.getText();
-	            int Quantity = Integer.valueOf(this.view.txtQuantity.getText());
-	            float Price = Float.valueOf(this.view.txtPrice.getText());  // Corrected line
-	            
-	            Stock product = new Stock(ProductID, NameProduct, Quantity, Price);
-	            
-	            this.view.AddorUpdateProduct(product);
-	        } catch (NumberFormatException e1) {
-	            e1.printStackTrace();
-	        }
-	    } else if (cm.equals("Update")) {
-	        this.view.ShowInfor();
-	    } else if (cm.equals("Delete")) {
-	        this.view.RemoveProduct();
-	    }
-	    else if (cm.equals("Cancel")) {
+public void actionPerformed(ActionEvent e) {
+    String cm = e.getActionCommand();
+    if (cm.equals("Add")) {
+        this.view.RemoveForm();
+        this.view.model.setSelect("Add");
+    } else if (cm.equals("Save")) {
+        try {
+            // Get data from input fields
+            int ProductID = Integer.valueOf(this.view.txtProductID.getText().trim());
+            String NameProduct = this.view.txtProductName.getText().trim();
+            int Quantity = Integer.valueOf(this.view.txtQuantity.getText().trim());
+            String priceText = this.view.txtPrice.getText().trim();
 
-	    }
-	}
+            // Validate and sanitize input for Price
+            if (!priceText.matches("[0-9]*\\.?[0-9]+")) {
+                throw new NumberFormatException("Invalid price format");
+            }
+
+            float Price = Float.valueOf(priceText);
+
+            Stock product = new Stock(ProductID, NameProduct, Quantity, Price);
+
+            this.view.AddorUpdateProduct(product);
+            this.view.loadDataToTable();
+        } catch (NumberFormatException e1) {
+            JOptionPane.showMessageDialog(this.view, "Invalid input: " + e1.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
+            e1.printStackTrace();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+    } else if (cm.equals("Update")) {
+        this.view.ShowInfor();
+    } else if (cm.equals("Delete")) {
+        try {
+            this.view.RemoveProduct();
+            this.view.loadDataToTable(); // Refresh table model after delete
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+    } else if (cm.equals("Cancel")) {
+        // Handle cancel action
+    }
+}
+
 
 	@Override
 	public Object getValue(String key) {

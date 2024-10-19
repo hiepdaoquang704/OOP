@@ -7,11 +7,13 @@ public interface DAOinterface<T> {
 	public int Update(T t);
 	
 	public int Delete(T t);
-	
+//	
 	public ArrayList<T> selectAll();
 	
 	public T selectById(T t);
 	
 	public ArrayList<T> selectByCondition(String condition);
+
+
 	 
 }

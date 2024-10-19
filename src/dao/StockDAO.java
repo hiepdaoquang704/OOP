@@ -68,13 +68,13 @@ public class StockDAO implements DAOinterface<Stock>{
 
 
 	@Override
-	public int Delete(Stock t) {
+	public int Delete(Stock product) {
 	    try {
 	        Connection con = JDBCUtil.getConnection();
 
 	        String sql = "DELETE FROM Stock WHERE ProductID = ?";
 	        PreparedStatement ps = con.prepareStatement(sql);
-	        ps.setInt(1, t.getProductID());
+	        ps.setInt(1, product.getProductID());
 
 	        System.out.println("SQL to execute: " + ps.toString());
 
@@ -181,6 +181,24 @@ public class StockDAO implements DAOinterface<Stock>{
 	    }
 	    return result;
 	}
+
+    public boolean CheckExisted(Stock product) {
+        String sql = "SELECT COUNT(*) FROM Stock WHERE ProductID = ?";
+        Connection con = JDBCUtil.getConnection();
+        
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, product.getProductID());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Trả về true nếu sản phẩm tồn tại
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        JDBCUtil.closeConnection(con);
+        return false; // Trả về false nếu không tìm thấy sản phẩm
+    }
+
 
 	
 }

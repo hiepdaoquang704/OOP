@@ -1,5 +1,6 @@
 package Views;
-
+import dao.StockDAO;
+import database.JDBCUtil;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import javax.swing.JSpinner;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
@@ -31,6 +33,9 @@ public class Manager extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	public StockManagement model;
+	
+	private StockDAO stockDAO;
+	
 	private JPanel contentPane;
 	public JTextField textField;
 	private JTable table;
@@ -56,11 +61,10 @@ public class Manager extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public Manager() {
+
+	public Manager() throws SQLException {
 		this.model= new StockManagement();
+		stockDAO = new StockDAO();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 805, 625);
 		
@@ -107,10 +111,6 @@ public class Manager extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2.setBounds(33, 119, 127, 37);
 		contentPane.add(lblNewLabel_2);
-		
-//		table = new JTable();
-//		table.setBounds(208, 275, 0, 0);
-//		contentPane.add(table);
 		
 		JList list_1 = new JList();
 		list_1.setBounds(187, 417, 1, 1);
@@ -171,7 +171,7 @@ public class Manager extends JFrame {
 		JButton btnNewButton_Delete = new JButton("Delete");
 		btnNewButton_Delete.addActionListener(action);
 		btnNewButton_Delete.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_Delete.setBounds(176, 508, 133, 37);
+		btnNewButton_Delete.setBounds(216, 508, 133, 37);
 		contentPane.add(btnNewButton_Delete);
 		
 		JButton btnNewButton_Update = new JButton("Update");
@@ -179,24 +179,15 @@ public class Manager extends JFrame {
 		
 		
 		btnNewButton_Update.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_Update.setBounds(325, 508, 133, 37);
+		btnNewButton_Update.setBounds(393, 508, 133, 37);
 		contentPane.add(btnNewButton_Update);
 		
 		JButton btnNewButton_Save = new JButton("Save");
 		btnNewButton_Save.addActionListener(action);
 		btnNewButton_Save.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_Save.setBounds(481, 508, 133, 37);
+		btnNewButton_Save.setBounds(575, 508, 133, 37);
 		contentPane.add(btnNewButton_Save);
 		
-		
-		
-		JButton btnNewButton_Cancel = new JButton("Cancel");
-		
-		btnNewButton_Cancel.addActionListener(action);
-		
-		btnNewButton_Cancel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_Cancel.setBounds(633, 508, 133, 37);
-		contentPane.add(btnNewButton_Cancel);
 		
 		table_stock = new JTable();
 		table_stock.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -210,6 +201,8 @@ public class Manager extends JFrame {
 		JScrollPane scrollPaneTable = new JScrollPane(table_stock);
 		scrollPaneTable.setBounds(68, 154, 656, 117);
 		contentPane.add(scrollPaneTable);
+		loadDataToTable();
+
 		this.setVisible(true);
 	}
 
@@ -221,29 +214,15 @@ public class Manager extends JFrame {
 		
 	}
 
-	public void AddorUpdateProduct(Stock product) {
-	    DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
-	    if (!this.model.CheckExisted(product)) {
-	        this.model.insert(product);
-	        model_table.addRow(new Object[]{
-	                product.getProductID() + "",
-	                product.getNameProduct(),
-	                product.getPrice() + "",
-	                product.getQuantity() + ""});
-	    } else {
-	        this.model.update(product);
-	        int num_rows = model_table.getRowCount();
-	        for (int i = 0; i < num_rows; i++) {
-	            String id = model_table.getValueAt(i, 0) + "";
-	            if (id.equals(product.getProductID() + "")) {
-	                model_table.setValueAt(product.getProductID() + "", i, 0);
-	                model_table.setValueAt(product.getNameProduct(), i, 1);  // Corrected line
-	                model_table.setValueAt(product.getPrice() + "", i, 2);  // Corrected line
-	                model_table.setValueAt(product.getQuantity() + "", i, 3);  // Corrected line
-	            }
-	        }
-	    }
-	}
+    public void AddorUpdateProduct(Stock product) throws SQLException {
+        DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
+        if (!stockDAO.CheckExisted(product)==true) { 
+		    stockDAO.Insert(product);
+		} else if(stockDAO.CheckExisted(product)==false) {
+		    stockDAO.Update(product);  
+		}
+	    loadDataToTable();
+    }
 
 	
 	public void ShowInfor() {
@@ -261,23 +240,36 @@ public class Manager extends JFrame {
 	    this.txtProductName.setText(NameProduct);
 	}
 
-	public void RemoveProduct() {
-	    DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
-	    int i_row = table_stock.getSelectedRow();
-	    if (i_row == -1) {
-	        JOptionPane.showMessageDialog(this, "Please select a product to delete.");
-	        return;
-	    }
+    public void RemoveProduct() throws SQLException {
+        DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
+        int i_row = table_stock.getSelectedRow();
+        if (i_row == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a product to delete.");
+            return;
+        }
 
 	    int ProductID = Integer.valueOf(model_table.getValueAt(i_row, 0) + "");
+	    String NameProduct = model_table.getValueAt(i_row, 1) + "";
+	    float Price = Float.valueOf(model_table.getValueAt(i_row, 2) + "");
+	    int Quantity = Integer.valueOf(model_table.getValueAt(i_row, 3) + "");
+        
+	    Stock product = new Stock(ProductID,NameProduct,Quantity,Price);
+        stockDAO.Delete(product);  
+		model_table.removeRow(i_row);  
+    }
+    
+    public void loadDataToTable() throws SQLException {
+        DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
+        model_table.setRowCount(0);  
+        for (Stock product : stockDAO.selectAll()) { 
+		    model_table.addRow(new Object[]{
+		        product.getProductID(),
+		        product.getNameProduct(),
+		        product.getPrice(),
+		        product.getQuantity()
+		    });
+		}
+    }
 
-	    for (Stock product : this.model.getListProduct()) {
-	        if (product.getProductID() == ProductID) {
-	            this.model.delete(product);
-	            model_table.removeRow(i_row);
-	            break;
-	        }
-	    }
-	}
 
 }
