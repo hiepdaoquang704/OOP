@@ -14,6 +14,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -244,7 +245,7 @@ public class Manager extends JFrame {
 	    }
 	}
 
-
+	
 	public void ShowInfor() {
 	    DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
 	    int i_row = table_stock.getSelectedRow();
@@ -259,4 +260,24 @@ public class Manager extends JFrame {
 	    this.txtQuantity.setText(Quantity + "");  
 	    this.txtProductName.setText(NameProduct);
 	}
+
+	public void RemoveProduct() {
+	    DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
+	    int i_row = table_stock.getSelectedRow();
+	    if (i_row == -1) {
+	        JOptionPane.showMessageDialog(this, "Please select a product to delete.");
+	        return;
+	    }
+
+	    int ProductID = Integer.valueOf(model_table.getValueAt(i_row, 0) + "");
+
+	    for (Stock product : this.model.getListProduct()) {
+	        if (product.getProductID() == ProductID) {
+	            this.model.delete(product);
+	            model_table.removeRow(i_row);
+	            break;
+	        }
+	    }
+	}
+
 }

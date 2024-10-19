@@ -22,7 +22,7 @@ public StockManaController(Manager view) {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	    String cm = e.getActionCommand();
-	    JOptionPane.showMessageDialog(view, cm);
+//	    JOptionPane.showMessageDialog(view, cm);
 	    if (cm.equals("Add")) {
 	        this.view.RemoveForm();
 	        this.view.model.setSelect("Add");
@@ -42,8 +42,11 @@ public StockManaController(Manager view) {
 	        }
 	    } else if (cm.equals("Update")) {
 	        this.view.ShowInfor();
-	    } else if (cm.equals("Cancel")) {
-	        this.view.RemoveForm();
+	    } else if (cm.equals("Delete")) {
+	        this.view.RemoveProduct();
+	    }
+	    else if (cm.equals("Cancel")) {
+
 	    }
 	}
 
