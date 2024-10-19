@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Stock {
 	private int  ProductID;
 	private String NameProduct;
@@ -44,5 +46,23 @@ public class Stock {
 		return "Stock [ProductID=" + ProductID + ", NameProduct=" + NameProduct + ", Quantity=" + Quantity + ", Price="
 				+ Price + "]";
 	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(NameProduct, Price, ProductID, Quantity);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Stock other = (Stock) obj;
+		return Objects.equals(NameProduct, other.NameProduct)
+				&& Float.floatToIntBits(Price) == Float.floatToIntBits(other.Price) && ProductID == other.ProductID
+				&& Quantity == other.Quantity;
+	}
+	
 	
 }

@@ -1,8 +1,14 @@
+package Views;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import models.Stock;
+import models.StockManagement;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -11,29 +17,27 @@ import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
+import Controller.StockManaController;
+
+import javax.swing.Action;
 public class Manager extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	public StockManagement model;
 	private JPanel contentPane;
-	private JTextField textField;
+	public JTextField textField;
 	private JTable table;
-	private JTextField txtProductId;
-	private JTextField txtNameProduct;
-	private JTextField txtPrice;
-	private JTextField txtQuantity;
-	private JTextField txtXxxxxxx;
-	private JTextField txtProduct;
-	private JTextField txtXxxxxxx_1;
-	private JTextField txtXx;
-	private JTextField txtXxxxxxxx;
-	private JTextField txtProduct_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField txtXxxxxx;
-	private JTextField txtProduct_2;
-	private JTextField txtXxxxxxx_2;
-	private JTextField txtXx_1;
+	public JTextField txtProductID;
+	public JTextField txtProductName;
+	public JTextField txtPrice;
+	public JTextField txtQuantity;
+	private JTable table_stock;
 
 	/**
 	 * Launch the application.
@@ -55,8 +59,14 @@ public class Manager extends JFrame {
 	 * Create the frame.
 	 */
 	public Manager() {
+		this.model= new StockManagement();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 805, 625);
+		
+		
+		Action action= new StockManaController(this);
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -78,10 +88,11 @@ public class Manager extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Search");
-		btnNewButton.setBounds(497, 68, 117, 37);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		contentPane.add(btnNewButton);
+		JButton btnNewButton_Search = new JButton("Search");
+		btnNewButton_Search.addActionListener(action);
+		btnNewButton_Search.setBounds(497, 68, 117, 37);
+		btnNewButton_Search.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		contentPane.add(btnNewButton_Search);
 		
 		JList list = new JList();
 		list.setBounds(110, 246, 58, 0);
@@ -93,173 +104,159 @@ public class Manager extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("     Stock");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(33, 120, 127, 37);
+		lblNewLabel_2.setBounds(33, 119, 127, 37);
 		contentPane.add(lblNewLabel_2);
 		
-		table = new JTable();
-		table.setBounds(208, 275, 0, 0);
-		contentPane.add(table);
+//		table = new JTable();
+//		table.setBounds(208, 275, 0, 0);
+//		contentPane.add(table);
 		
 		JList list_1 = new JList();
 		list_1.setBounds(187, 417, 1, 1);
 		contentPane.add(list_1);
-		
-		txtProductId = new JTextField();
-		txtProductId.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtProductId.setText("Product ID");
-		txtProductId.setBounds(26, 168, 142, 35);
-		contentPane.add(txtProductId);
-		txtProductId.setColumns(10);
-		
-		txtNameProduct = new JTextField();
-		txtNameProduct.setText("Name product");
-		txtNameProduct.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtNameProduct.setColumns(10);
-		txtNameProduct.setBounds(167, 168, 142, 35);
-		contentPane.add(txtNameProduct);
-		
-		txtPrice = new JTextField();
-		txtPrice.setText("  Price");
-		txtPrice.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtPrice.setColumns(10);
-		txtPrice.setBounds(308, 168, 142, 35);
-		contentPane.add(txtPrice);
-		
-		txtQuantity = new JTextField();
-		txtQuantity.setText("  Quantity");
-		txtQuantity.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtQuantity.setColumns(10);
-		txtQuantity.setBounds(447, 168, 142, 35);
-		contentPane.add(txtQuantity);
-		
-		txtXxxxxxx = new JTextField();
-		txtXxxxxxx.setText("xxxxxxx");
-		txtXxxxxxx.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtXxxxxxx.setColumns(10);
-		txtXxxxxxx.setBounds(26, 203, 142, 35);
-		contentPane.add(txtXxxxxxx);
-		
-		txtProduct = new JTextField();
-		txtProduct.setText("Product 1");
-		txtProduct.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtProduct.setColumns(10);
-		txtProduct.setBounds(167, 203, 142, 35);
-		contentPane.add(txtProduct);
-		
-		txtXxxxxxx_1 = new JTextField();
-		txtXxxxxxx_1.setText("xxxxxxx");
-		txtXxxxxxx_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtXxxxxxx_1.setColumns(10);
-		txtXxxxxxx_1.setBounds(308, 203, 142, 35);
-		contentPane.add(txtXxxxxxx_1);
-		
-		txtXx = new JTextField();
-		txtXx.setText("xx");
-		txtXx.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtXx.setColumns(10);
-		txtXx.setBounds(447, 203, 142, 35);
-		contentPane.add(txtXx);
-		
-		txtXxxxxxxx = new JTextField();
-		txtXxxxxxxx.setText("xxxxxxxx");
-		txtXxxxxxxx.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtXxxxxxxx.setColumns(10);
-		txtXxxxxxxx.setBounds(26, 236, 142, 35);
-		contentPane.add(txtXxxxxxxx);
-		
-		txtProduct_1 = new JTextField();
-		txtProduct_1.setText("Product 2");
-		txtProduct_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtProduct_1.setColumns(10);
-		txtProduct_1.setBounds(167, 236, 142, 35);
-		contentPane.add(txtProduct_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setText("xxxxxxx");
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_3.setColumns(10);
-		textField_3.setBounds(308, 236, 142, 35);
-		contentPane.add(textField_3);
-		
-		textField_4 = new JTextField();
-		textField_4.setText("xx");
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_4.setColumns(10);
-		textField_4.setBounds(447, 236, 142, 35);
-		contentPane.add(textField_4);
 		
 		JLabel lblNewLabel_3 = new JLabel("Product information");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3.setBounds(33, 307, 135, 32);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Product ID");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_4.setBounds(33, 369, 107, 23);
-		contentPane.add(lblNewLabel_4);
+		JLabel lblNewLabel_Productid = new JLabel("Product ID");
+		lblNewLabel_Productid.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_Productid.setBounds(33, 369, 107, 23);
+		contentPane.add(lblNewLabel_Productid);
 		
-		JLabel lblNewLabel_4_1 = new JLabel("Product name");
-		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_4_1.setBounds(33, 403, 107, 23);
-		contentPane.add(lblNewLabel_4_1);
+		JLabel lblNewLabelProductName = new JLabel("Product name");
+		lblNewLabelProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabelProductName.setBounds(33, 403, 107, 23);
+		contentPane.add(lblNewLabelProductName);
 		
-		JLabel lblNewLabel_4_1_1 = new JLabel("Price");
-		lblNewLabel_4_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_4_1_1.setBounds(33, 437, 107, 23);
-		contentPane.add(lblNewLabel_4_1_1);
+		JLabel lblNewLabelPrice = new JLabel("Price");
+		lblNewLabelPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabelPrice.setBounds(33, 437, 107, 23);
+		contentPane.add(lblNewLabelPrice);
 		
-		JLabel lblNewLabel_4_1_1_1 = new JLabel("Quantity");
-		lblNewLabel_4_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_4_1_1_1.setBounds(33, 471, 107, 23);
-		contentPane.add(lblNewLabel_4_1_1_1);
+		JLabel lblNewLabelQuantity = new JLabel("Quantity");
+		lblNewLabelQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabelQuantity.setBounds(33, 471, 107, 23);
+		contentPane.add(lblNewLabelQuantity);
 		
-		txtXxxxxx = new JTextField();
-		txtXxxxxx.setText("xxxxxx");
-		txtXxxxxx.setBounds(181, 371, 142, 23);
-		contentPane.add(txtXxxxxx);
-		txtXxxxxx.setColumns(10);
+		txtProductID = new JTextField();
+		txtProductID.setBounds(181, 371, 142, 23);
+		contentPane.add(txtProductID);
+		txtProductID.setColumns(10);
 		
-		txtProduct_2 = new JTextField();
-		txtProduct_2.setText("Product 3");
-		txtProduct_2.setColumns(10);
-		txtProduct_2.setBounds(181, 406, 142, 23);
-		contentPane.add(txtProduct_2);
+		txtProductName = new JTextField();
+		txtProductName.setColumns(10);
+		txtProductName.setBounds(181, 406, 142, 23);
+		contentPane.add(txtProductName);
 		
-		txtXxxxxxx_2 = new JTextField();
-		txtXxxxxxx_2.setText("xxxxxxx");
-		txtXxxxxxx_2.setColumns(10);
-		txtXxxxxxx_2.setBounds(181, 440, 142, 23);
-		contentPane.add(txtXxxxxxx_2);
+		txtPrice = new JTextField();
+		txtPrice.setColumns(10);
+		txtPrice.setBounds(181, 440, 142, 23);
+		contentPane.add(txtPrice);
 		
-		txtXx_1 = new JTextField();
-		txtXx_1.setText("xx");
-		txtXx_1.setColumns(10);
-		txtXx_1.setBounds(181, 474, 142, 23);
-		contentPane.add(txtXx_1);
+		txtQuantity = new JTextField();
+		txtQuantity.setColumns(10);
+		txtQuantity.setBounds(181, 474, 142, 23);
+		contentPane.add(txtQuantity);
 		
-		JButton btnNewButton_1 = new JButton("Add to stock");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1.setBounds(26, 508, 133, 37);
-		contentPane.add(btnNewButton_1);
+		JButton btnNewButton_Add2Stock = new JButton("Add");
+		btnNewButton_Add2Stock.addActionListener(action);
 		
-		JButton btnNewButton_1_1 = new JButton("Delete");
-		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1_1.setBounds(176, 508, 133, 37);
-		contentPane.add(btnNewButton_1_1);
+		btnNewButton_Add2Stock.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNewButton_Add2Stock.setBounds(26, 508, 133, 37);
+		contentPane.add(btnNewButton_Add2Stock);
 		
-		JButton btnNewButton_1_2 = new JButton("Updates");
-		btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1_2.setBounds(325, 508, 133, 37);
-		contentPane.add(btnNewButton_1_2);
+		JButton btnNewButton_Delete = new JButton("Delete");
+		btnNewButton_Delete.addActionListener(action);
+		btnNewButton_Delete.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNewButton_Delete.setBounds(176, 508, 133, 37);
+		contentPane.add(btnNewButton_Delete);
 		
-		JButton btnNewButton_1_2_1 = new JButton("Save");
-		btnNewButton_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1_2_1.setBounds(481, 508, 133, 37);
-		contentPane.add(btnNewButton_1_2_1);
+		JButton btnNewButton_Update = new JButton("Update");
+		btnNewButton_Update.addActionListener(action);
 		
-		JButton btnNewButton_1_2_1_1 = new JButton("Cancel");
-		btnNewButton_1_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1_2_1_1.setBounds(633, 508, 133, 37);
-		contentPane.add(btnNewButton_1_2_1_1);
+		
+		btnNewButton_Update.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNewButton_Update.setBounds(325, 508, 133, 37);
+		contentPane.add(btnNewButton_Update);
+		
+		JButton btnNewButton_Save = new JButton("Save");
+		btnNewButton_Save.addActionListener(action);
+		btnNewButton_Save.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNewButton_Save.setBounds(481, 508, 133, 37);
+		contentPane.add(btnNewButton_Save);
+		
+		
+		
+		JButton btnNewButton_Cancel = new JButton("Cancel");
+		
+		btnNewButton_Cancel.addActionListener(action);
+		
+		btnNewButton_Cancel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNewButton_Cancel.setBounds(633, 508, 133, 37);
+		contentPane.add(btnNewButton_Cancel);
+		
+		table_stock = new JTable();
+		table_stock.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		table_stock.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ProductID", "ProductName", "Price", "Quantity"
+			}
+		));
+		JScrollPane scrollPaneTable = new JScrollPane(table_stock);
+		scrollPaneTable.setBounds(68, 154, 656, 117);
+		contentPane.add(scrollPaneTable);
+		this.setVisible(true);
+	}
+
+	public void RemoveForm() {
+		txtProductID.setText("");
+		txtPrice.setText("");
+		txtProductName.setText("");
+		txtQuantity.setText("");
+		
+	}
+
+	public void AddorUpdateProduct(Stock product) {
+	    DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
+	    if (!this.model.CheckExisted(product)) {
+	        this.model.insert(product);
+	        model_table.addRow(new Object[]{
+	                product.getProductID() + "",
+	                product.getNameProduct(),
+	                product.getPrice() + "",
+	                product.getQuantity() + ""});
+	    } else {
+	        this.model.update(product);
+	        int num_rows = model_table.getRowCount();
+	        for (int i = 0; i < num_rows; i++) {
+	            String id = model_table.getValueAt(i, 0) + "";
+	            if (id.equals(product.getProductID() + "")) {
+	                model_table.setValueAt(product.getProductID() + "", i, 0);
+	                model_table.setValueAt(product.getNameProduct(), i, 1);  // Corrected line
+	                model_table.setValueAt(product.getPrice() + "", i, 2);  // Corrected line
+	                model_table.setValueAt(product.getQuantity() + "", i, 3);  // Corrected line
+	            }
+	        }
+	    }
+	}
+
+
+	public void ShowInfor() {
+	    DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
+	    int i_row = table_stock.getSelectedRow();
+
+	    int ProductID = Integer.valueOf(model_table.getValueAt(i_row, 0) + "");
+	    String NameProduct = model_table.getValueAt(i_row, 1) + "";
+	    float Price = Float.valueOf(model_table.getValueAt(i_row, 2) + "");
+	    int Quantity = Integer.valueOf(model_table.getValueAt(i_row, 3) + "");
+
+	    this.txtProductID.setText(ProductID + "");
+	    this.txtPrice.setText(Price + "");
+	    this.txtQuantity.setText(Quantity + "");  
+	    this.txtProductName.setText(NameProduct);
 	}
 }

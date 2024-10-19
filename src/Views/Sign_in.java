@@ -1,3 +1,5 @@
+package Views;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,6 +10,8 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Sign_in extends JFrame {
 
@@ -50,7 +54,7 @@ public class Sign_in extends JFrame {
 		lblNewLabel.setBounds(173, 35, 79, 28);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Phone number");
+		JLabel lblNewLabel_1 = new JLabel("Email");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(39, 99, 89, 23);
 		contentPane.add(lblNewLabel_1);
@@ -70,12 +74,16 @@ public class Sign_in extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Out");
-		btnNewButton.setBounds(72, 205, 96, 23);
+		JButton btnNewButton = new JButton("Registration");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(184, 213, 96, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Sign in");
-		btnNewButton_1.setBounds(244, 205, 96, 23);
+		btnNewButton_1.setBounds(184, 180, 96, 23);
 		contentPane.add(btnNewButton_1);
 	}
 }
