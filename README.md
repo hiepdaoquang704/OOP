@@ -71,19 +71,43 @@ Cung cấp cơ chế xác thực và phân quyền, chỉ cho phép quản trị
 
 
 
-    
+2. Biểu đồ Sequence Diagram Đăng kí
 
-2. Biểu đổ Sequence Diagram Add product
+
+![image](https://github.com/user-attachments/assets/1496f743-0995-4176-8beb-e0586deb8eb3)
+
+
+3. Biểu đồ Sequence Diagram Đăng nhập
+
+
+![image](https://github.com/user-attachments/assets/a1d58ff5-41a9-4656-9255-1737402c9122)
+
+
+
+4. Biểu đổ Sequence Diagram Add product
+
 
 ![Addproduct](https://github.com/user-attachments/assets/5054704e-b165-48c8-bab6-34d96b27b30c)
 
-3. Biểu đổ Sequence Diagram Delete product
+5. Biểu đổ Sequence Diagram Delete product
+   
 
 ![DeleteProduct](https://github.com/user-attachments/assets/07c0560e-3971-4579-a386-c0c865ea5101)
 
-4. Biểu đổ Sequence Diagram Orders
+
+6. Biểu đồ Sequence Diagram Update product
+
+
+   
+![image](https://github.com/user-attachments/assets/da952dd5-201c-42c8-9399-8232dd0b1bc9)
+
+
+7. Biểu đổ Sequence Diagram Orders
+
+
 
 ![Order](https://github.com/user-attachments/assets/ef98f602-d95d-4413-82eb-2e478d88892c)
+
 
 ### Các thành phần chức năng của hệ thống
 #### Đăng ký, đăng nhập
