@@ -74,13 +74,13 @@ public class Sign_in extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Registration");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnToSignUp = new JButton("Sign up");
+		btnToSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(184, 213, 96, 23);
-		contentPane.add(btnNewButton);
+		btnToSignUp.setBounds(184, 213, 96, 23);
+		contentPane.add(btnToSignUp);
 		
 		JButton btnNewButton_1 = new JButton("Sign in");
 		btnNewButton_1.setBounds(184, 180, 96, 23);

@@ -37,7 +37,7 @@ public class Manager extends JFrame {
 	private StockDAO stockDAO;
 	
 	private JPanel contentPane;
-	public JTextField textField;
+	public JTextField textField_Seach;
 	private JTable table;
 	public JTextField txtProductID;
 	public JTextField txtProductName;
@@ -78,8 +78,8 @@ public class Manager extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("        Manager");
-		lblNewLabel.setBounds(285, 26, 160, 47);
+		JLabel lblNewLabel = new JLabel("        Manager - Bussiness Management");
+		lblNewLabel.setBounds(207, 26, 412, 47);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		contentPane.add(lblNewLabel);
 		
@@ -88,14 +88,14 @@ public class Manager extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		contentPane.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(207, 72, 251, 32);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textField_Seach = new JTextField();
+		textField_Seach.setBounds(207, 72, 251, 32);
+		contentPane.add(textField_Seach);
+		textField_Seach.setColumns(10);
 		
 		JButton btnNewButton_Search = new JButton("Search");
 		btnNewButton_Search.addActionListener(action);
-		btnNewButton_Search.setBounds(497, 68, 117, 37);
+		btnNewButton_Search.setBounds(488, 67, 117, 37);
 		btnNewButton_Search.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		contentPane.add(btnNewButton_Search);
 		
@@ -201,6 +201,14 @@ public class Manager extends JFrame {
 		JScrollPane scrollPaneTable = new JScrollPane(table_stock);
 		scrollPaneTable.setBounds(68, 154, 656, 117);
 		contentPane.add(scrollPaneTable);
+		
+		JButton btnNewButton_CancelSearch = new JButton("Cancel");
+		btnNewButton_CancelSearch.addActionListener(action);
+		btnNewButton_CancelSearch.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_CancelSearch.setBounds(615, 67, 117, 37);
+
+		
+		contentPane.add(btnNewButton_CancelSearch);
 		loadDataToTable();
 
 		this.setVisible(true);
@@ -216,9 +224,9 @@ public class Manager extends JFrame {
 
     public void AddorUpdateProduct(Stock product) throws SQLException {
         DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
-        if (!stockDAO.CheckExisted(product)==true) { 
+        if (!stockDAO.CheckExisted(product)) { 
 		    stockDAO.Insert(product);
-		} else if(stockDAO.CheckExisted(product)==false) {
+		} else if(stockDAO.CheckExisted(product)) {
 		    stockDAO.Update(product);  
 		}
 	    loadDataToTable();
@@ -270,6 +278,26 @@ public class Manager extends JFrame {
 		    });
 		}
     }
+    public void searchProductByID(int productID) throws SQLException {
+        DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
+        model_table.setRowCount(0);  // Clear the table
+        Stock searchProduct= new Stock();
+        searchProduct.setProductID(productID);
+        Stock product = stockDAO.selectById(searchProduct);  
+        if (product != null) {
+            model_table.addRow(new Object[]{
+                product.getProductID(),
+                product.getNameProduct(),
+                product.getPrice(),
+                product.getQuantity()
+            });
+        } else {
+            JOptionPane.showMessageDialog(this, "Product not found.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
 
+    public void cancelSearch() throws SQLException {
+        loadDataToTable(); 
+    }
 }

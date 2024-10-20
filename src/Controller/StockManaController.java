@@ -59,8 +59,22 @@ public void actionPerformed(ActionEvent e) {
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
+    } else if (cm.equals("Search")) {
+        try {
+            int productID = Integer.valueOf(this.view.textField_Seach.getText().trim());
+            this.view.searchProductByID(productID);
+        } catch (NumberFormatException e1) {
+            JOptionPane.showMessageDialog(this.view, "Invalid Product ID", "Input Error", JOptionPane.ERROR_MESSAGE);
+            e1.printStackTrace();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
     } else if (cm.equals("Cancel")) {
-        // Handle cancel action
+        try {
+            this.view.cancelSearch();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
     }
 }
 
