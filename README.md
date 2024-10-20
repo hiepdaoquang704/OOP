@@ -14,8 +14,12 @@ Group-10_OOP_N01
 ## Giới thiệu dự án:    
 Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa và cải thiện hiệu quả hoạt động của các cửa hàng. Hệ thống cho phép quản lý các sản phẩm và giao dịch    
 ## Thành viên nhóm:    
-* Đào Quang Hiệp: Phát triển phần mềm
-* Nguyễn Ngọc Hiếu: Phát triển phần mềm        
+* Đào Quang Hiệp: vẽ UML chức năng Delete, Add, order; Code back-end, database.  
+  link video demo:  
+* Nguyễn Ngọc Hiếu: Thiết kế giao diện; code front-end; thiết kế Class Diagram, vẽ UML chức năng update, sign in, sign up ; viết báo cáo.    
+  link video demo:
+
+  
 ##  Tổng quan về Hệ Quản trị Cơ sở Dữ liệu MySQL
 MySQL lưu trữ dữ liệu dưới dạng các bảng trong cơ sở dữ liệu. Mỗi bảng bao gồm các cột (column) và hàng (row). Dữ liệu trong MySQL được tổ chức và quản lý thông qua các câu truy vấn SQL, giúp người dùng có thể dễ dàng truy xuất, cập nhật, hoặc xóa dữ liệu.
 Trong ứng dụng bán hàng, MySQL được sử dụng để lưu trữ và quản lý các thông tin quan trọng như:
