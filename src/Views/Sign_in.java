@@ -5,21 +5,31 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.LoginController;
+import database.JDBCUtil;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Sign_in extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
+	private JTextField textFieldEmail;
+	private JTextField textFieldPassword;
+	private LoginController loginController = new LoginController();
 	/**
 	 * Launch the application.
 	 */
@@ -39,9 +49,10 @@ public class Sign_in extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public Sign_in() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 598, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -51,39 +62,74 @@ public class Sign_in extends JFrame {
 		JLabel lblNewLabel = new JLabel("Sign in");
 		lblNewLabel.setBackground(new Color(240, 240, 240));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblNewLabel.setBounds(173, 35, 79, 28);
+		lblNewLabel.setBounds(238, 33, 79, 28);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Email");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(39, 99, 89, 23);
+		lblNewLabel_1.setBounds(66, 133, 89, 23);
 		contentPane.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(150, 101, 167, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textFieldEmail = new JTextField();
+		textFieldEmail.setBounds(199, 135, 225, 22);
+		contentPane.add(textFieldEmail);
+		textFieldEmail.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Password");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(39, 149, 89, 20);
+		lblNewLabel_2.setBounds(66, 182, 89, 20);
 		contentPane.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(150, 149, 167, 21);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textFieldPassword = new JTextField();
+		textFieldPassword.setBounds(199, 182, 225, 23);
+		contentPane.add(textFieldPassword);
+		textFieldPassword.setColumns(10);
 		
 		JButton btnToSignUp = new JButton("Sign up");
 		btnToSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+        		Registration RegisFrame = new Registration();
+        		RegisFrame.setVisible(true);
+                dispose();
 			}
 		});
-		btnToSignUp.setBounds(184, 213, 96, 23);
+		btnToSignUp.setBounds(244, 269, 104, 28);
 		contentPane.add(btnToSignUp);
 		
 		JButton btnNewButton_1 = new JButton("Sign in");
-		btnNewButton_1.setBounds(184, 180, 96, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String email = textFieldEmail.getText();
+                String password = textFieldPassword.getText();
+                try {
+					handleLogin(email, password);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1.setBounds(244, 231, 104, 28);
 		contentPane.add(btnNewButton_1);
+		
+		
+		
 	}
+	
+	private void handleLogin(String email, String password) throws SQLException {
+        String role = loginController.login(email, password);  
+
+        if (role != null) {
+            if (role.equals("customer")) {
+                Orders orderFrame = new Orders(); 
+                orderFrame.setVisible(true);
+            } else if (role.equals("manager")) {
+                Manager managerFrame = new Manager(); 
+                managerFrame.setVisible(true);
+            }
+            dispose(); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid email or password", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

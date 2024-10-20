@@ -1,4 +1,5 @@
 package Views;
+import Views.Sign_in;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -27,6 +28,7 @@ public class Registration extends JFrame {
 	private JRadioButton rdbtnCustomer;  // Radio button cho Customer
     private JRadioButton rdbtnManager;
     private ButtonGroup userTypeGroup;
+    private JButton btnSignIn;
 
 	/**
 	 * Launch the application.
@@ -124,12 +126,19 @@ public class Registration extends JFrame {
         userTypeGroup.add(rdbtnCustomer);
         userTypeGroup.add(rdbtnManager);
 
-        // Sign Up button
-//        JButton btnSignUp = new JButton("Sign Up");
-//        btnSignUp.addActionListener(new RegisController(this));
-//        btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 16));
-//        btnSignUp.setBounds(340, 400, 147, 31);
         contentPane.add(btnSignUp);
+        
+        btnSignIn = new JButton("Sign In");
+        btnSignIn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Sign_in signInFrame = new Sign_in();
+                signInFrame.setVisible(true);
+                dispose();
+        	}
+        });
+        btnSignIn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        btnSignIn.setBounds(340, 442, 147, 31);
+        contentPane.add(btnSignIn);
 		this.setVisible(true);
 
 	}

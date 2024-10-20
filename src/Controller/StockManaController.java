@@ -19,7 +19,6 @@ public StockManaController(Manager view) {
 		
 	}
 
-	//	
 public void actionPerformed(ActionEvent e) {
     String cm = e.getActionCommand();
     if (cm.equals("Add")) {
@@ -27,13 +26,12 @@ public void actionPerformed(ActionEvent e) {
         this.view.model.setSelect("Add");
     } else if (cm.equals("Save")) {
         try {
-            // Get data from input fields
+
             int ProductID = Integer.valueOf(this.view.txtProductID.getText().trim());
             String NameProduct = this.view.txtProductName.getText().trim();
             int Quantity = Integer.valueOf(this.view.txtQuantity.getText().trim());
             String priceText = this.view.txtPrice.getText().trim();
 
-            // Validate and sanitize input for Price
             if (!priceText.matches("[0-9]*\\.?[0-9]+")) {
                 throw new NumberFormatException("Invalid price format");
             }
@@ -55,7 +53,7 @@ public void actionPerformed(ActionEvent e) {
     } else if (cm.equals("Delete")) {
         try {
             this.view.RemoveProduct();
-            this.view.loadDataToTable(); // Refresh table model after delete
+            this.view.loadDataToTable(); 
         } catch (SQLException e1) {
             e1.printStackTrace();
         }

@@ -78,7 +78,7 @@ public class Manager extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("        Manager - Bussiness Management");
+		JLabel lblNewLabel = new JLabel("        Manager - Stock Management");
 		lblNewLabel.setBounds(207, 26, 412, 47);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		contentPane.add(lblNewLabel);
@@ -280,7 +280,7 @@ public class Manager extends JFrame {
     }
     public void searchProductByID(int productID) throws SQLException {
         DefaultTableModel model_table = (DefaultTableModel) table_stock.getModel();
-        model_table.setRowCount(0);  // Clear the table
+        model_table.setRowCount(0);  
         Stock searchProduct= new Stock();
         searchProduct.setProductID(productID);
         Stock product = stockDAO.selectById(searchProduct);  

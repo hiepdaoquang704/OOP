@@ -23,8 +23,12 @@ public class UserDAO implements DAOinterface<User> {
             ps.setString(2, user.getEmail());
             ps.setLong(3, user.getPhone());
             ps.setString(4, user.getPassword());
-            ps.setString(5, user.getUserType());  // Lưu loại người dùng (Customer/Manager)
-            System.out.println("SQL to execute: " + ps.toString());  // In ra câu lệnh SQL
+            ps.setString(5, user.getUserType());  
+            
+            
+            System.out.println("SQL to execute: " + ps.toString());  
+            
+            
             result = ps.executeUpdate();
 
             JDBCUtil.closeConnection(con);

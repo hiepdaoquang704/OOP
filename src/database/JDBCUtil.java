@@ -8,7 +8,7 @@ public class JDBCUtil {
 		Connection c =null;
 		
 		try {
-			//Đănng ký mysql Driver với Driver Manager
+
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 			String url = "jdbc:mysql://avnadmin:AVNS_IuP2XVXWP8qDaS5Nqq4@mysql-277c0df0-hiepdaoquang704-cd96.i.aivencloud.com:20871/defaultdb?ssl-mode=REQUIRED";
 			String username="avnadmin";
@@ -16,7 +16,7 @@ public class JDBCUtil {
 			c= DriverManager.getConnection(url, username, password);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -38,7 +38,7 @@ public class JDBCUtil {
 					System.out.println(c.getMetaData().toString());
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}

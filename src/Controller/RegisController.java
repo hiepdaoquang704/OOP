@@ -17,7 +17,7 @@ public class RegisController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         if (command.equals("Sign Up")) {
-            // Lấy thông tin từ các text fields
+
             String name = registration.getNameField().getText();
             String phone = registration.getPhoneField().getText();
             String email = registration.getEmailField().getText();
@@ -25,17 +25,17 @@ public class RegisController implements ActionListener {
             String userType = registration.getUserType();
 
             try {
-                long phoneNumber = Long.parseLong(phone);  // Chuyển đổi sang long
+                long phoneNumber = Long.parseLong(phone);  
 
                 if (userType != null) {
-                    // Tạo đối tượng User
+
                     User user = new User(0, name, email, phoneNumber, password, userType);
 
-                    // Lưu vào database
+
                     UserDAO userDAO = new UserDAO();
                     int result = userDAO.Insert(user);
 
-                    // Kiểm tra kết quả lưu
+
                     if (result > 0) {
                         System.out.println("User registered successfully!");
                     } else {
