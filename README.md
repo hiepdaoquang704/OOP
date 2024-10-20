@@ -87,26 +87,30 @@ Cung cấp cơ chế xác thực và phân quyền, chỉ cho phép quản trị
 4. Biểu đổ Sequence Diagram Add product
 
 
-![Addproduct](https://github.com/user-attachments/assets/5054704e-b165-48c8-bab6-34d96b27b30c)
+![image](https://github.com/user-attachments/assets/0f216636-c9a9-4ee9-a4a1-702b103082a9)
+
 
 5. Biểu đổ Sequence Diagram Delete product
    
 
-![DeleteProduct](https://github.com/user-attachments/assets/07c0560e-3971-4579-a386-c0c865ea5101)
+![image](https://github.com/user-attachments/assets/2129cc1c-ec42-4ca3-99f3-4c11fd3f46f5)
+
 
 
 6. Biểu đồ Sequence Diagram Update product
 
 
    
-![image](https://github.com/user-attachments/assets/da952dd5-201c-42c8-9399-8232dd0b1bc9)
+![image](https://github.com/user-attachments/assets/9e764e12-cdc2-4b37-a397-93fd02d64bb3)
+
 
 
 7. Biểu đổ Sequence Diagram Orders
 
 
 
-![Order](https://github.com/user-attachments/assets/ef98f602-d95d-4413-82eb-2e478d88892c)
+![image](https://github.com/user-attachments/assets/c22ef989-c79c-410c-a3be-f4886315b951)
+
 
 
 ### Các thành phần chức năng của hệ thống
