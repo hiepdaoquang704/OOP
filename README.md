@@ -148,9 +148,20 @@ Tính năng của Java Swing\
  * Hỗ trợ : Swing cho phép lập trình viên dễ dàng xử lý các sự kiện người dùng như nhấp chuột, gõ phím, và tương tác với các thành phần khác.
 1. Giao diện đăng kí đăng nhập
 
-![image](https://github.com/user-attachments/assets/3710da3a-3aa4-4c2b-8b4a-f11b928db491)
+![b02a36be-abd6-4ef9-8fa9-7e57b21fa736](https://github.com/user-attachments/assets/ac95931c-11ec-46d5-ae42-bd7f10b171c5)
+
+
+![c51cf603-d3fd-4010-a861-0cf5f3fedec9](https://github.com/user-attachments/assets/34320377-342d-49be-887d-45673155a9fb)
+
+
+
+
+
 
 2. Giao diện Manager
+
+
+![7c562a79-6e0b-4aba-902b-e3bea448f922](https://github.com/user-attachments/assets/439b1166-9e84-4583-82ad-2e68d2da661d)
 
 
 3. Giao diện Orders
