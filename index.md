@@ -23,9 +23,8 @@
 ## Giới thiệu dự án    
 Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa và cải thiện hiệu quả hoạt động của các cửa hàng. Hệ thống cho phép quản lý các sản phẩm và giao dịch.
 
-[Link Project](https://github.com/hiepdaoquang704/OOP)  
-[Link Video Demo](https://youtu.be/GY9_6zcJ4EQ?si=-K-ds1Hyz6ctz2YR)
-
+Link Project: https://github.com/hiepdaoquang704/OOP   
+Link Video Demo: https://youtu.be/GY9_6zcJ4EQ?si=-K-ds1Hyz6ctz2YR  
 ## Thành viên nhóm    
 - Đào Quang Hiệp: vẽ UML chức năng Delete, Add, Order; code back-end, database.
 - Nguyễn Ngọc Hiếu: thiết kế giao diện; code front-end; thiết kế Class Diagram, vẽ UML chức năng Update, Sign In, Sign Up; viết báo cáo.
