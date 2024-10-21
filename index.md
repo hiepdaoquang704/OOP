@@ -23,13 +23,14 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
   link video demo:  
 * Nguyễn Ngọc Hiếu: Thiết kế giao diện; code front-end; thiết kế Class Diagram, vẽ UML chức năng update, sign in, sign up ; viết báo cáo.    
   link video demo:
-
+  link project:  https://github.com/hiepdaoquang704/OOP    
+  link video demo:  https://youtu.be/GY9_6zcJ4EQ?si=-K-ds1Hyz6ctz2YR    
   
 ##  Tổng quan về Hệ Quản trị Cơ sở Dữ liệu MySQL
 MySQL lưu trữ dữ liệu dưới dạng các bảng trong cơ sở dữ liệu. Mỗi bảng bao gồm các cột (column) và hàng (row). Dữ liệu trong MySQL được tổ chức và quản lý thông qua các câu truy vấn SQL, giúp người dùng có thể dễ dàng truy xuất, cập nhật, hoặc xóa dữ liệu.
 Trong ứng dụng bán hàng, MySQL được sử dụng để lưu trữ và quản lý các thông tin quan trọng như:
-* Thông tin sản phẩm: Tên, giá, số lượng, mô tả sản phẩm.
-* Thông tin khách hàng: Tên, địa chỉ, số điện thoại.
+* Thông tin sản phẩm: Tên, giá, số lượng.
+* Thông tin người dùng: Tên, Email, số điện thoại,customer/manager,password.
 * Đơn hàng: Thông tin các đơn hàng, sản phẩm, khách hàng và trạng thái của đơn hàng.
 * MySQL giúp quản lý cơ sở dữ liệu của ứng dụng một cách hiệu quả, hỗ trợ truy xuất thông tin nhanh chóng và bảo mật.
 ##  Phân tích và thiết kế hệ thống
@@ -48,7 +49,7 @@ Yêu cầu chức năng mô tả các tính năng mà hệ thống cần phải 
  * Hệ thống ghi nhận thông tin đơn hàng như tên khách hàng, địa chỉ giao hàng, danh sách sản phẩm và số lượng.
  * Hiển thị trạng thái đơn hàng (chờ xử lý, đang giao, đã hoàn thành).
   5. Tìm kiếm sản phẩm:
- * Cung cấp chức năng tìm kiếm sản phẩm theo tên, giá, danh mục sản phẩm.
+ * Cung cấp chức năng tìm kiếm sản phẩm theo tên, giá, danh mục sản phẩm.  
   6 .Quản lý khách hàng:
  * Quản lý thông tin khách hàng (tên, địa chỉ, số điện thoại, email).
  * Cho phép khách hàng đăng ký tài khoản, đăng nhập và quản lý thông tin cá nhân.
@@ -58,7 +59,7 @@ Yêu cầu hệ thống mô tả các yêu cầu kỹ thuật và hiệu năng m
  * Hệ thống phải sử dụng cơ sở dữ liệu MySQL để lưu trữ thông tin sản phẩm, khách hàng, đơn hàng.
  * Cơ sở dữ liệu cần được tối ưu hóa để đảm bảo truy vấn dữ liệu nhanh chóng ngay cả khi số lượng sản phẩm và đơn hàng tăng cao.
   2. Bảo mật:
-Hệ thống cần đảm bảo an toàn dữ liệu bằng cách mã hóa thông tin khách hàng, đặc biệt là thông tin nhạy cảm như địa chỉ và số điện thoại.
+* Hệ thống cần đảm bảo an toàn dữ liệu bằng cách mã hóa thông tin khách hàng, đặc biệt là thông tin nhạy cảm như địa chỉ và số điện thoại.
 Cung cấp cơ chế xác thực và phân quyền, chỉ cho phép quản trị viên truy cập vào các tính năng quản lý.
   3. Tính hiệu năng:
  * Ứng dụng phải hoạt động ổn định và đáp ứng nhanh ngay cả khi có nhiều người dùng truy cập cùng lúc.
@@ -87,13 +88,13 @@ Cung cấp cơ chế xác thực và phân quyền, chỉ cho phép quản trị
 
 ### Các thành phần chức năng của hệ thống
 #### Đăng ký, đăng nhập
-1. Chức năng đăng ký:\
+1. Chức năng đăng ký:
 Mô tả: Khách hàng có thể tạo tài khoản mới để sử dụng ứng dụng. Việc này giúp hệ thống lưu trữ thông tin cá nhân và quản lý đơn hàng của khách hàng dễ dàng hơn.\
 Yêu cầu:
 * Người dùng cần cung cấp thông tin cần thiết như tên, địa chỉ, số điện thoại và email.
 * Hệ thống phải kiểm tra tính hợp lệ của thông tin (ví dụ: địa chỉ email phải đúng định dạng).
 * Hệ thống cần kiểm tra xem email đã tồn tại hay chưa. Nếu có, hiển thị thông báo lỗi.
-2. Chức năng đăng nhập:\
+2. Chức năng đăng nhập:
 Mô tả: Khách hàng có thể đăng nhập vào tài khoản đã tạo để truy cập các tính năng của ứng dụng.\
 Yêu cầu:
  * Người dùng nhập địa chỉ email và mật khẩu để đăng nhập.
@@ -102,23 +103,23 @@ Yêu cầu:
  * Cung cấp chức năng khôi phục mật khẩu cho người dùng nếu họ quên mật khẩu.
 
 #### Chức năng quản lí kho
-Mô tả: Chức năng này dành cho quản trị viên (Manager) của hệ thống. Nó cho phép quản trị viên quản lý thông tin sản phẩm, đơn hàng và khách hàng.\
+Mô tả: Chức năng này dành cho quản trị viên (Manager) của hệ thống. Nó cho phép quản trị viên quản lý thông tin sản phẩm trong kho hàng của họ.\
 Các yêu cầu chức năng:
-1. Quản lý sản phẩm:\
+1. Quản lý sản phẩm:
  * Thêm sản phẩm: Quản trị viên có thể nhập thông tin sản phẩm mới, bao gồm tên, giá, mô tả, số lượng và hình ảnh sản phẩm.
  * Cập nhật sản phẩm: Quản trị viên có thể chỉnh sửa thông tin của sản phẩm đã có trong hệ thống.
  * Xóa sản phẩm: Quản trị viên có thể xóa sản phẩm không còn bán hoặc không phù hợp.
-2. Quản lý đơn hàng:
+2. Quản lý đơn hàng(Inprogress):
  * Xem danh sách đơn hàng: Quản trị viên có thể xem tất cả các đơn hàng đã được đặt, bao gồm thông tin khách hàng, sản phẩm và trạng thái đơn hàng.
  * Cập nhật trạng thái đơn hàng: Quản trị viên có thể thay đổi trạng thái của đơn hàng (chờ xử lý, đang giao, đã hoàn thành) để theo dõi tiến độ giao hàng.
-#### Chức năng Orders
-Mô tả: Chức năng này dành cho khách hàng (Customer) của hệ thống, cho phép họ thực hiện các thao tác mua sắm và quản lý thông tin cá nhân.\
-Vì lý do thời gian nên nhóm phát triển thêm chức năng này sau
+#### Chức năng Orders(Inprogress)
+Mô tả: Chức năng này dành cho khách hàng (Customer) của hệ thống, cho phép họ thực hiện các thao tác mua sắm và quản lý thông tin cá nhân.
+
 ### Thiết kế giao diện hệ thống
 #### Sử dụng Java Swing để thiết kế giao diện cho ứng dụng
-Giới thiệu về Java Swing\
+Giới thiệu về Java Swing
 Java Swing là một thư viện trong Java cho phép phát triển giao diện đồ họa (GUI) với các thành phần người dùng phong phú. Swing cung cấp nhiều công cụ và tính năng hữu ích để xây dựng các ứng dụng có giao diện thân thiện và tương tác.\
-Tính năng của Java Swing\
+Tính năng của Java Swing
  * Độc lập với nền tảng: Giao diện Swing có thể chạy trên nhiều hệ điều hành khác nhau mà không cần thay đổi mã nguồn.
  * Thành phần giao diện đa dạng: Swing cung cấp nhiều thành phần như JButton, JTextField, JLabel, JTable, JComboBox, và nhiều thành phần khác, giúp xây dựng giao diện phong phú.
  * Hỗ trợ : Swing cho phép lập trình viên dễ dàng xử lý các sự kiện người dùng như nhấp chuột, gõ phím, và tương tác với các thành phần khác.
