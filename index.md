@@ -17,14 +17,15 @@ Group-10_OOP_N01
 - [Thiết kế giao diện hệ thống](#thiết-kế-giao-diện-hệ-thống)
 - [Tổng kết và hướng phát triển](#tổng-kết)
 ## Giới thiệu dự án:    
-Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa và cải thiện hiệu quả hoạt động của các cửa hàng. Hệ thống cho phép quản lý các sản phẩm và giao dịch    
+Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa và cải thiện hiệu quả hoạt động của các cửa hàng. Hệ thống cho phép quản lý các sản phẩm và giao dịch 
+ 
+link project:  https://github.com/hiepdaoquang704/OOP    
+link video demo:  https://youtu.be/GY9_6zcJ4EQ?si=-K-ds1Hyz6ctz2YR    
 ## Thành viên nhóm:    
 * Đào Quang Hiệp: vẽ UML chức năng Delete, Add, order; Code back-end, database.  
-  link video demo:  
+
 * Nguyễn Ngọc Hiếu: Thiết kế giao diện; code front-end; thiết kế Class Diagram, vẽ UML chức năng update, sign in, sign up ; viết báo cáo.    
-  link video demo:
-  link project:  https://github.com/hiepdaoquang704/OOP    
-  link video demo:  https://youtu.be/GY9_6zcJ4EQ?si=-K-ds1Hyz6ctz2YR    
+
   
 ##  Tổng quan về Hệ Quản trị Cơ sở Dữ liệu MySQL
 MySQL lưu trữ dữ liệu dưới dạng các bảng trong cơ sở dữ liệu. Mỗi bảng bao gồm các cột (column) và hàng (row). Dữ liệu trong MySQL được tổ chức và quản lý thông qua các câu truy vấn SQL, giúp người dùng có thể dễ dàng truy xuất, cập nhật, hoặc xóa dữ liệu.
