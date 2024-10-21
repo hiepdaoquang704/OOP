@@ -152,14 +152,27 @@ Yêu cầu hệ thống mô tả các yêu cầu kỹ thuật và hiệu năng m
 
 ## Thiết kế giao diện hệ thống
 
-1. Giao diện người dùng đăng kí
-![Giao diện đăng kí](https://github.com/user-attachments/assets/874e3fd8-e925-4a4e-98b7-9983a43f63b8)
-2. Giao diện người dùng đăng nhập
-![Giao diện đăng nhập](https://github.com/user-attachments/assets/0d8bcada-e202-4c6f-832b-71cc80f41db1)
-3. Giao diện quản lý kho hàng
-![Giao diện quản lý kho hàng](https://github.com/user-attachments/assets/1d7a61b0-1540-4c50-8d33-319cd849adcb)
-4. Giao diện giỏ hàng
-![Giao diện giỏ hàng](https://github.com/user-attachments/assets/91b3df5a-7bc2-4e3e-a34a-fb5e2934aa88)
+1. Giao diện đăng kí đăng nhập
+
+![b02a36be-abd6-4ef9-8fa9-7e57b21fa736](https://github.com/user-attachments/assets/ac95931c-11ec-46d5-ae42-bd7f10b171c5)
+
+
+![c51cf603-d3fd-4010-a861-0cf5f3fedec9](https://github.com/user-attachments/assets/34320377-342d-49be-887d-45673155a9fb)
+
+
+
+
+
+
+2. Giao diện Manager
+
+
+![7c562a79-6e0b-4aba-902b-e3bea448f922](https://github.com/user-attachments/assets/439b1166-9e84-4583-82ad-2e68d2da661d)
+
+
+3. Giao diện Orders
+
+![image](https://github.com/user-attachments/assets/2ddc8f9c-5c4e-4dc6-a16b-8ff068347fe1)
 
 ## Tổng kết
 Dự án Hệ Thống Quản Lý Bán Hàng đã cung cấp một nền tảng giúp các cửa hàng quản lý sản phẩm và giao dịch hiệu quả hơn. Với các tính năng như quản lý sản phẩm, giỏ hàng, đơn hàng và khách hàng, hệ thống giúp tăng cường hiệu quả và tính tổ chức trong quản lý bán hàng.
