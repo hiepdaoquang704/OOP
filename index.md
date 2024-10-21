@@ -177,6 +177,14 @@ Tính năng của Java Swing
 ### Hướng phát triển và mở rộng 
 Để ứng dụng bán hàng có thể phát triển mạnh mẽ và đáp ứng được nhu cầu ngày càng cao của người dùng, cần xem xét một số hướng phát triển và mở rộng như: Tích hợp phương thức thanh toán trực tuyến,Cải thiện hệ thống khuyến mãi và giảm giá,Tính năng đánh giá và nhận xét sản phẩm,Phân tích dữ liệu khách hàng
 
+## Cài đặt
+
+### 1. Clone Repository
+Clone repository từ GitHub về máy của bạn:
+```bash
+git clone https://github.com/hiepdaoquang704/OOP.git
+cd OOP
+java -jar OOP.jar
 
 
 
